@@ -3,6 +3,7 @@ import {Appointment} from './appointment';
 import {Task} from './task';
 
 export class User {
+  public static SLEEP_HOURS = 8;
   id: number;
   name: string;
   reviewDate: Date;

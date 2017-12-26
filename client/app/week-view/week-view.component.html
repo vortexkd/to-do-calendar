@@ -1,5 +1,5 @@
 <div class="wrapper button button-top" (click)="previous()">
-  ^
+  ↑
 </div>
 <ng-container *ngFor="let day of week">
   <div class="wrapper" (click)="clicked(day)" [ngClass]="{highlight: isToday(day)}">
@@ -7,5 +7,5 @@
   </div>
 </ng-container>
 <div class="wrapper button" (click)="next()">
-  V
+  ↓
 </div>

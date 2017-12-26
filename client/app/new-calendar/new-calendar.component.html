@@ -3,7 +3,6 @@
     [viewDate]="date"
     [events]="getEvents()"
     (hourSegmentClicked)="eventClicked($event)"
-    (eventTimesChanged)="log()"
   >
     <!-- なぜか、eventClickedでファンクションを呼ぶと何も起こらないんです。-->
   </mwl-calendar-day-view>

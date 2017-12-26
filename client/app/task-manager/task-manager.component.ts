@@ -110,6 +110,17 @@ export class TaskManagerComponent implements OnInit {
     });
     return hours;
   }
+  public getTimeBreakDown() {
+    return Math.round(this.getCompletedGoalHours() / this.goal.getSleepAdjustedTimeSinceCreation() * 100);
+  }
+  public getAchievementEstimate() {
+    const days = this.goal.daysSinceCreatedDate();
+    const done = this.getCompletedGoalHours();
+    const rate = done / days;
+    const remaining = this.getRequiredGoalHours();
+    const timeNeeded = remaining / rate; // (days required)
+    return DateHandler.addDaysToDate(new Date, timeNeeded).toDateString();
+  }
   public getUserDetails() {
     this.loginService.getUserData().subscribe(
       response => {

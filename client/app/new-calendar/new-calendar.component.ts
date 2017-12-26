@@ -47,9 +47,6 @@ export class NewCalendarComponent implements OnInit {
   public getEvents(): CalendarEvent[] {
     return this.eventify();
   }
-  public log() {
-    console.log('iiiii');
-  }
   eventClicked(event: Date): void {
     this.hourClicked.emit(event['date']);
   }

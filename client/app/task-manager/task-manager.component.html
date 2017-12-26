@@ -13,10 +13,14 @@
 </ng-container>
 <ng-container *ngIf="goal != null">
   <app-goal-editor [goal]="goal" [toDoTasksLength]="toDoTasks().length" [addingGoal]="addingGoal" (updateRequest)="getUserDetails()"></app-goal-editor>
+  <div class="info">
+    あなたの時間のやく{{getTimeBreakDown()}}%がこのゴールを追っています。<br />
+    このペースでタスク全完了見込みは{{getAchievementEstimate()}}
+  </div>
   <div class="wrapper">
     <div class="flex">
       <p>
-        現在設定されているタスクの残り時間 {{getRequiredGoalHours()}} <br />
+        現在設定されているタスクの残り時間 : {{getRequiredGoalHours()}}時間 <br />
         やるべきタスク
       </p>
       <div class="task-container" *ngFor="let task of toDoTasks()">
@@ -42,7 +46,7 @@
     </div>
     <div class="flex">
       <p>
-        取り組み完了時間 {{getCompletedGoalHours()}} <br />
+        取り組み完了時間 : {{getCompletedGoalHours()}}時間 <br />
         完了済みタスク（おめでとう！）
       </p>
       <div class="task-container" *ngFor="let task of completedTasks()">

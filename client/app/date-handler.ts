@@ -5,6 +5,7 @@ export class DateHandler {
   static months = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
 
   public static ONE_DAY = 24 * 60 * 60 * 1000;
+  public static ONE_HOUR = 60 * 60 * 1000;
   public static getDayString(date: Date): string {
     return DateHandler.days[date.getDay()];
   }
@@ -37,7 +38,12 @@ export class DateHandler {
     }
     return '00';
   }
+  public static addDaysToDate(date: Date, days: number): Date {
+    const temp = date;
+    temp.setTime(date.getTime() + (days * DateHandler.ONE_DAY));
+    return new Date(temp);
 
+  }
   private static doubleDigitFormat(num: number): string {
     return ('00' + num).slice(-2);
   }

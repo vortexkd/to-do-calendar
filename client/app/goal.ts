@@ -1,5 +1,7 @@
 import { Task } from './task';
 import {Appointment} from './appointment';
+import {DateHandler} from './date-handler';
+import {User} from './user';
 
 export class Goal {
   public static GOAL_LIMIT = 4;
@@ -51,5 +53,15 @@ export class Goal {
   }
   public getAchieved(): number {
     return this.isAchieved ? 1 : 0;
+  }
+
+  public getSleepAdjustedTimeSinceCreation() {
+    const time = this.daysSinceCreatedDate() * (24 - User.SLEEP_HOURS);
+    return time;
+  }
+  public daysSinceCreatedDate(): number {
+    const today = new Date();
+    const diffDays = Math.round(Math.abs((today.getTime() - this.createdDate.getTime()) / (DateHandler.ONE_DAY)));
+    return diffDays;
   }
 }
