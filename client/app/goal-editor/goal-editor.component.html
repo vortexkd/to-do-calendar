@@ -1,0 +1,14 @@
+<input class="goal-title invisible" type="text" [(ngModel)]="goal.title" (change)="isChanged=true" (blur)="updateGoal()" placeholder="What's your goal?"/>
+<textarea class="goal-description invisible" placeholder="Describe your goal" [(ngModel)]="goal.description"
+          (change)="isChanged=true" (blur)="updateGoal()"></textarea>
+<img class="delete" src="../../assets/Awicons-Vista-Artistic-Delete.ico" width="20" height="20" (click)="deleteGoal()" />
+<label>レビュー日: <input type="date" [(ngModel)]="reviewDateString" (change)="isChanged=true;" (blur)="updateGoal()"/> </label>
+<div class="stats-div">
+  <button *ngIf="!addingGoal" (click)="achieveCheck()">できた!</button>
+  <button *ngIf="addingGoal" (click)="saveNewGoal()">目標を目指す!</button>
+  <div *ngIf="confirm">
+    <p>You haven\'t finished all your tasks, are you sure you want to mark this goal as done?</p>
+    <button (click)="confirm=false">いいえ</button>
+    <button (click)="goalAchieved()">はい</button>
+  </div>
+</div>

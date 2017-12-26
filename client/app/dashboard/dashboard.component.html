@@ -1,0 +1,15 @@
+<app-objective-interface [goals]="getGoals()" [tasks]="getTasks()" [appointments]="getAppointments()" (setAppointments)="refresh($event)"></app-objective-interface>
+<!--<button (click)="log()" value="log">log</button> -->
+<!--<app-calendar [appointments]="getAppointments()"></app-calendar>-->
+<div class="organizer">
+  <div class="week-view">
+    <app-week-view [appointments]="getAppointments()" (open)="changeFocusDay($event)" [focusDate]="viewDate"></app-week-view>
+  </div>
+  <div class="day-view">
+    <app-new-calendar [date]="viewDate" [appointments]="getAppointments()" (hourClicked)="displayAppointmentBox($event)"></app-new-calendar>
+  </div>
+</div>
+<app-create-appointment-dialogue *ngIf="addAppointment" [startTime]="dateForAppo"
+                                 (appointmentSetAlert)="refresh($event)" (close)="addAppointment=false">
+</app-create-appointment-dialogue>
+<app-review-box *ngIf="askReview" [appointments]="getReviewAppointments()" (modAppointments)="refresh($event)" (done)="askReview=false"></app-review-box>

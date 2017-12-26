@@ -1,0 +1,20 @@
+<div (click)="focus=true">
+  <input class="task-title invisible" type="text" [(ngModel)]="task.title" />
+  <img *ngIf="task.isOverdue()" class="delayed" title="delayed" height="20" width="20" src="../../assets/delayed.png"/>
+  締め切り： <input class="due-date invisible" type="date" [(ngModel)]="dateString" />
+  <label for="task_{{task.id}}" >完了チェック
+    <input id="task_{{task.id}}" type="checkbox" [(ngModel)]="task.isComplete" (change)="updateTask()" />
+  </label>
+<div *ngIf="focus==true">
+  <textarea class="description invisible" type="text" [(ngModel)]="task.description" > </textarea>
+  完了済み: {{task.completedManHours}} / <input class="small invisible" type="text" [(ngModel)]="task.estimatedManHours"/> 時間
+  <button (click)="updateTask()">Save</button>
+  <button (click)="showAppointments=!showAppointments">{{showAppointments ? 'Hide': 'Show'}} Details</button>
+  <img class="delete" src="../../assets/Awicons-Vista-Artistic-Delete.ico" width="20" height="20" (click)="deleteTask()" />
+</div>
+  <ng-container *ngIf="showAppointments">
+    <ng-container *ngFor="let appointment of appointmentList">
+      <app-appointment-editor [appointment]="appointment" (deleted)="bubbleEvent($event)"></app-appointment-editor>
+    </ng-container>
+  </ng-container>
+</div>

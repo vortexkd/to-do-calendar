@@ -1,0 +1,37 @@
+.goal {
+  height: 100%;
+  font-family: "Calibri", sans-serif;
+}
+
+.goal-title {
+  display:block;
+  background-color: transparent;
+  font-family: "Calibri", sans-serif;
+  font-size: 1.5em;
+  font-weight: bold;
+  border: solid 1px #dddddd;
+  padding: 0.2em;
+  width: 95%;
+  margin: auto;
+  text-align: center;
+}
+
+/*
+.star {
+  visibility:hidden;
+  font-size:30px;
+  cursor:pointer;
+  z-index: 0;
+}
+.star:before {
+  content: "\2606";
+  position: relative;
+  top: -0.5em;
+  visibility:visible;
+}
+.star:checked:before {
+  content: "\2605";
+  position: relative;
+  top: -0.5em;
+}
+*/

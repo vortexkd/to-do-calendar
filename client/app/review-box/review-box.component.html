@@ -1,0 +1,10 @@
+<div class="dialogue-box">
+  <h1>今日のレビュー</h1>
+  <span>今日の予定のコメントなど、行われなかった予定も消せます。</span>
+  <div class="wrapper">
+    <ng-container *ngFor="let appo of appointments">
+      <app-review-box-appo [appointment]="appo" (del)="deleteAppo(appo)" (update)="updated($event)"></app-review-box-appo>
+    </ng-container>
+  </div>
+  <button (click)="close()">完了</button>
+</div>

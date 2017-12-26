@@ -1,0 +1,38 @@
+.block {
+  display: block;
+  padding: 5px;
+}
+.time-input {
+  width: 1.5em !important;
+}
+.input-simulator {
+  display: inline-block;
+  width: 70%;
+  height: 2em;
+  background-color: #dddddd;
+}
+.new-appointment-details input {
+  /*width: 70%;*/
+  border: none;
+  background-color: transparent;
+  height:95%;
+  vertical-align: center;
+  padding: 0px 2px 0px 5px;
+  display: inline;
+  width: 95%;
+}
+.delayed {
+  height: 20px;
+  width: 20px;
+  margin-left: -10px;
+}
+.dialogue-box {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  width: 50vh;
+  height: 50vh;
+  background-color: beige;
+  padding: 10px;
+  z-index: 10000;
+}

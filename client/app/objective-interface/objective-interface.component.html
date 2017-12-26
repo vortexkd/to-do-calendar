@@ -1,0 +1,16 @@
+<div class="top-container">
+  <ng-container *ngFor="let goal of goals">
+    <div class="goal-wrapper" [style.backgroundColor]="getColour(goal.id)">
+      <div class="goal-data">
+        <app-goal [goal]="goal" [tasks]="getTasksForGoal(goal.id)" [appointments]="getAppointmentsForGoal(goal.id)"></app-goal>
+      </div>
+      <div class="goal-actions">
+        <a routerLink="/taskManager/{{goal.id}}"><button>プランナー</button></a>
+        <button (click)="workOnGoal(goal.id)">取り組む！</button>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<app-create-appointment-dialogue *ngIf="selectedGoal != null" [goal]="selectedGoal" [tasks]="getTasksForGoal(selectedGoal.id)"
+                                 (appointmentSetAlert)="bubbleAppointment($event)" (close)="closeDialogue()">
+</app-create-appointment-dialogue>

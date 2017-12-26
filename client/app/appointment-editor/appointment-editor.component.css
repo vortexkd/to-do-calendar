@@ -1,0 +1,18 @@
+label {
+  padding: 5px;
+}
+.highlight {
+  background-color: bisque;
+}
+.new-appointment-details input {
+  width: 70%;
+}
+button {
+  margin-left: 1em;
+}
+.new-appointment-details {
+  margin-bottom: 5px;
+}
+.wrapper {
+  display: block;
+}

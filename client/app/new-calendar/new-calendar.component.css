@@ -1,0 +1,6 @@
+.wrapper {
+  overflow-y: scroll;
+  height: 60vh;
+  width: 100%;
+  overflow-x: hidden;
+}

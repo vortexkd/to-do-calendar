@@ -1,0 +1,38 @@
+<div class="dialogue-box">
+  <h3>{{goal.title}}</h3>
+  <div class="new-appointment-details">
+    <span class="block">
+      <div class="input-simulator">
+        <input type="text" name="title" [(ngModel)]="title" placeholder="Add Title" />
+      </div>
+    </span>
+    <span class="block">
+      <label for="appointment_date">Date : </label>
+      <div class="input-simulator">
+        <input #date type="date" name="date" id="appointment_date" [autofocus]="true" [value]="getDate()" (change)="updateFormDate(date.value)"/>
+      </div>
+    </span>
+    <span class="block">
+      <label for="appointment_start">From : </label>
+      <div class="input-simulator">
+        <input class="time-input" type="text" name="start_time" id="appointment_start" [(ngModel)]="formStartHours" />
+        :
+        <input class="time-input" type="text" name="start_time_min" id="appointment_start_min" [(ngModel)]="formStartMinutes" />
+        &#8594;
+        <input class="time-input" type="text" name="end_time" id="appointment_end" [(ngModel)]="formEndHours" />
+        :
+        <input class="time-input" type="text" name="end_time_min" id="appointment_end_min" [(ngModel)]="formEndMinutes" />
+      </div>
+    </span>
+  </div>
+  <div class="task-list">
+    <ng-container *ngFor="let task of toDoTasks()">
+    <span class="block">
+      <input type="radio" name="task" [id]="task.id" [value]="task.id" (change)="updateTask(task.id)"/>
+      <label [for]="task.id">{{task.title}}</label>
+    </span>
+    </ng-container>
+  </div>
+  <button (click)="setAppointment()">Schedule</button>
+  <button (click)="closeFunction()">Close</button>
+</div>

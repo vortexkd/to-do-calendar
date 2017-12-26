@@ -1,0 +1,6 @@
+<div class="appointment">
+  {{appointment.title}}
+  <img (click)="deleteEvent()" src="../../assets/Trash_Can-512.png" height="15" width="15" title="delete" />
+  <br />
+  <input type="text" placeholder="コメント" [(ngModel)]="note" (change)="changed=true" (blur)="updateNote()" />
+</div>

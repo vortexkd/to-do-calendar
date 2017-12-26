@@ -1,0 +1,14 @@
+.wrapper {
+  height: 6%;
+}
+.highlight {
+  background-color: beige;
+}
+.button {
+  border: solid 1px #242424;
+  text-align: center;
+  cursor: pointer;
+}
+.button-top {
+  border-bottom: none;
+}

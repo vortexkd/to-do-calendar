@@ -1,0 +1,96 @@
+.goal-title {
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+  height: 2.5em;
+}
+.goal-description {
+  width: 80%;
+  display: block;
+  margin: auto;
+  height: 3em;
+  font-family: "Calibri", sans-serif;
+  font-size: 1em;
+  font-style: italic;
+  min-width: 80%;
+  max-width: 80%;
+  text-align: center;
+}
+.task-container {
+  background-color: #f1f1f1;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding:5px;
+}
+.wrapper {
+  display: flex;
+}
+.flex {
+  flex-basis: 90%;
+  margin: 5px;
+}
+
+.invisible {
+  background-color: transparent;
+  border: none;
+}
+.task-title {
+  width:90%;
+  height: 1.5em;
+  font-size: 1em;
+  display: block;
+  wrap-option: ellipses;
+  margin: 5px;
+}
+.description {
+  width: 90%;
+  display: block;
+  margin: 5px;
+  max-width: 30vh;
+  min-width: 90%;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.small {
+  width: 50px;
+}
+.delete {
+  float:right;
+  margin-right: 10px;
+  margin-top: -20px;
+}
+.stats-div {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+.stats-div button {
+  margin: auto;
+}
+button {
+  display: block;
+}
+a {
+  display: inline-block;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  text-decoration: none;
+  margin:auto;
+}
+a:hover {
+  background-color: #e0eeee;
+}
+nav {
+  padding: 10px;
+  position: relative;
+  top:-10px;
+  left:-10px;
+  width: 100%;
+  background-color: azure;
+  display: flex;
+}
+

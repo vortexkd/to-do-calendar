@@ -1,0 +1,9 @@
+<div class="task-item">
+  <img *ngIf="task.isOverdue()" class="delayed" title="delayed" height="20" width="20" src="../../assets/delayed.png"/> <span>{{task.title}}</span>
+<!---->
+  <div class="w3-light-grey w3-round-large" *ngIf="completedHours > 0">
+    <div class="w3-container w3Green w3-round-large"
+         [ngClass]="{w3Orange: completedHours > task.estimatedManHours}" [style.width]="taskCompletionPercent()">
+    </div>
+  </div>
+</div>

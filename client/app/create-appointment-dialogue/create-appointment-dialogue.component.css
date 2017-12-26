@@ -1,0 +1,15 @@
+h1 {
+  text-align: center;
+}
+.task-list {
+  overflow-y: auto;
+}
+
+#appointment_date {
+  width: 100%;
+}
+.new-appointment-details label {
+  display: inline-block;
+  width: 3em;
+}
+

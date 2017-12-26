@@ -1,0 +1,54 @@
+<ng-container *ngIf="user != null">
+  <nav>
+    <a routerLink="/dashboard">Dashboard</a>
+    <ng-container *ngFor="let goal of user.goals">
+      <a routerLink="/taskManager/{{goal.id}}" (click)="getUserDetails()">
+        {{goal.title}}
+      </a>
+    </ng-container>
+    <a *ngIf="!(user.goals == null) && user.goals.length < goalLimit" (click)="addGoal()">
+      新ゴールを設定する
+    </a>
+  </nav>
+</ng-container>
+<ng-container *ngIf="goal != null">
+  <app-goal-editor [goal]="goal" [toDoTasksLength]="toDoTasks().length" [addingGoal]="addingGoal" (updateRequest)="getUserDetails()"></app-goal-editor>
+  <div class="wrapper">
+    <div class="flex">
+      <p>
+        現在設定されているタスクの残り時間 {{getRequiredGoalHours()}} <br />
+        やるべきタスク
+      </p>
+      <div class="task-container" *ngFor="let task of toDoTasks()">
+        <app-task-item [task]="task" [appointmentList]="appointmentsOfTask(task.id)"
+                       (requireReload)="getUserDetails()" (changedAppointmentList)="loadAppointments($event)"></app-task-item>
+      </div>
+      <div class="task-container">
+        <input class="task-title invisible" type="text" placeholder="新タスクを作る..." (click)="addingTask = true;" [(ngModel)]="title"/>
+        <div *ngIf="addingTask" ngAnimate="enter">
+            <label for="newTask_estimate"> 見積もり
+              <input id="newTask_estimate" class="small invisible" type="number" placeholder="1" [(ngModel)]="estimatedHours"/>
+              時間 |
+            </label>
+          <label for="newTask_estimate"> 締め切り設定 :
+            <input class="invisible" type="date" [(ngModel)]="dueDate"/>
+          </label>
+            <div>
+              <input type="text" class="invisible description" placeholder="メモ" [(ngModel)]="description"/>
+            </div>
+          <button (click)="addTask()">設定する</button>
+        </div>
+      </div>
+    </div>
+    <div class="flex">
+      <p>
+        取り組み完了時間 {{getCompletedGoalHours()}} <br />
+        完了済みタスク（おめでとう！）
+      </p>
+      <div class="task-container" *ngFor="let task of completedTasks()">
+       <app-task-item [task]="task" [appointmentList]="appointmentsOfTask(task.id)"
+                      (requireReload)="getUserDetails()" (changedAppointmentList)="loadAppointments($event)"></app-task-item>
+      </div>
+    </div>
+  </div>
+</ng-container>

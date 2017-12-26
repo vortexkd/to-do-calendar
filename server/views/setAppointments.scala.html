@@ -1,0 +1,25 @@
+@(content: String)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointments</title>
+</head>
+<body>
+
+<form action="" method="POST">
+    <input type="text" name="appointment_title" placeholder="Title"/>
+    <br />
+    <input type="date" name="date" />
+    <br />
+    <input type="text" name="start_time" value="11:00" maxlength="5"/>
+    <br />
+    <input type="text" name="end_time" value="12:00" maxlength="5"/>
+    <br />
+    <button type="submit">Submit</button>
+</form>
+<div>
+    @content
+</div>
+</body>
+</html>

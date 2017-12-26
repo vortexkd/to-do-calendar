@@ -1,0 +1,26 @@
+<div class="wrapper" (click)="expand=true" [ngClass]="{highlight: expand}">
+  <div><input [(ngModel)]="appointment.title" class="invisible"/>
+  {{getAppoDate(appointment.startTime)}} : {{appointment.getDuration()}} 時間</div>
+  <div class="block" *ngIf="appointment.isOver() && appointment.note!=''">
+    {{appointment.note}}
+  </div>
+</div>
+<div class="new-appointment-details highlight" *ngIf="expand">
+  <div>
+    <label for="start-hour">日付</label><input type="date" [(ngModel)]="formDate" />
+  </div>
+  <div>
+    <label for="start-hour">開始時</label>
+    <div class="input-simulator">
+      <input type="text" id="start-hour" class="time-input small invisible" [(ngModel)]="formStartHours"/>
+      <label for="start-hour">時</label>
+      <input type="text" class="time-input invisible" [(ngModel)]="formStartMin"/>分
+      -
+      <input type="text" id="end-hour" class="time-input small invisible" [(ngModel)]="formEndHours"/>
+      <label for="end-hour">時</label>
+      <input type="text" class="time-input invisible" [(ngModel)]="formEndMin"/>分
+    </div>
+  </div>
+  <button (click)="saveAppointment()">保存</button>
+  <button (click)="deleteAppointment()">削除する</button>
+</div>

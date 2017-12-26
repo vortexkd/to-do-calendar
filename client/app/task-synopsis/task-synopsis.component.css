@@ -1,0 +1,27 @@
+.w3-light-grey, .w3-hover-light-grey:hover, .w3-light-gray, .w3-hover-light-gray:hover {
+  display:inline-block;
+  width: 30%;
+  color: #000!important;
+  background-color: #f1f1f1!important;
+  height:0.5em;
+  border: solid 1px #f1f1f1;
+}
+.w3-round-large {
+  border-radius: 8px;
+}
+.w3Green, .w3-hover-blue:hover {
+  color: #fff!important;
+  background-color: #4CAF50!important;
+  height: 0.5em;
+}
+.w3Orange {
+  color: #fff!important;
+  background-color: #ff9800!important;
+  height: 0.5em;
+}
+.w3-container, .w3-panel {
+  padding: 0.01em;
+}
+.task-item {
+  padding: 0.5em;
+}
