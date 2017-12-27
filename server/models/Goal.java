@@ -39,7 +39,7 @@ public class Goal implements IExportable {
     // for adding a goal.
     public Goal(String title, String description, String reviewDate) {
         this.title = title;
-        this.description = Validator.clean(description);
+        this.description = (description != null ? Validator.clean(description) : "");
         this.reviewDate = LocalDate.parse(reviewDate, DATE_FORMAT);
         this.createdDate = LocalDate.now();
     }
@@ -47,7 +47,7 @@ public class Goal implements IExportable {
     public Goal(String id, String title, String reviewDate, String description, String achieved, String satisfaction) {
         this.id = (isInt(id) ? Integer.parseInt(id) : 0);
         this.title = title;
-        this.description = Validator.clean(description);
+        this.description = Validator.clean(description, true);
         this.isAchieved = !"0".equals(achieved);
         this.reviewDate = LocalDate.parse(reviewDate, DATE_FORMAT);
     }

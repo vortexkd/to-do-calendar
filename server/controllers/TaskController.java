@@ -24,7 +24,7 @@ public class TaskController extends Controller{
 
     public Result getTask() {
         DatabaseGetter dbGetter = new DatabaseGetter(db);
-        String json = Exporter.listToJSON(dbGetter.getTasks(1));
+        String json = Wrapper.wrapWithJsonKey(Exporter.listToJSON(dbGetter.getTasks(1)), "tasks");
         return ok(Wrapper.wrapResponse(json));
     }
     public Result addTask() {
@@ -53,9 +53,9 @@ public class TaskController extends Controller{
                 form.get("comp_hours"), form.get("title"), form.get("description"));
         DatabaseGetter dbGetter = new DatabaseGetter(db);
         if (dbGetter.updateTask(userId, task)){
-            return ok(Wrapper.wrapResponse(task.toJSON()));
+            return getTask();
         }
-        return ok();
+        return ok(Wrapper.errorResponse("Something went wrong."));
     }
     private Result deleteTask(int userId, String taskId) {
         DatabaseGetter dbGetter = new DatabaseGetter(db);

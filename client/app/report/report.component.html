@@ -1,0 +1,29 @@
+<ng-container *ngIf="user!=null">
+  <h1>自分分析</h1>
+  <p>
+    今週のゴールに向けた効率せいは : 約{{getWeekEfficiency()}}% (毎日約{{getProdTime()}}時間)</p>
+  <p><i>(ToDo: 測る時間帯を自由にすること)</i></p>
+  <p>平均雑時間 : 毎日約 {{getZatsuTime()}}時間</p>
+  <p>カレンダーに入れてない時間 : 毎日約{{getUnrecordedTime()}}</p>
+  <p>ユーザー設定睡眠時間:{{getSleepHours()}}時間</p>
+  <h2>ゴール分析</h2>
+  <ng-container *ngFor="let goal of user.goals">
+    <h3>{{goal.title}}</h3>
+    <p>
+      このゴールに向けた割合 {{goalProductivity(goal)}} %.</p>
+    <p>
+      今週取り組んだタスク</p>
+    <ul *ngFor="let task of workedTasks">
+        <li *ngIf="task.goalId==goal.id">{{task.title}}</li>
+    </ul>
+    <p *ngIf="hasOverdueTask(goal.id)">
+      異常に時間をとってるタスクは:
+    </p>
+    <ul *ngFor="let task of overdueTasks">
+      <ng-container *ngIf="task.goalId==goal.id">
+        <li>{{task.title}}</li>
+      </ng-container>
+
+    </ul>
+  </ng-container>
+</ng-container>

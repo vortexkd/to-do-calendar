@@ -10,6 +10,7 @@ import {TaskService} from '../task.service';
 import {DateHandler} from '../date-handler';
 import {GoalService} from '../goal.service';
 import {Appointment} from '../appointment';
+import {Analyzer} from '../analyzer';
 
 @Component({
   selector: 'app-task-manager',
@@ -23,6 +24,7 @@ export class TaskManagerComponent implements OnInit {
   reviewDateString: string;
   addingGoal = false;
   goalLimit = Goal.GOAL_LIMIT;
+  hasDelayedWarning: Task[];
 
   addingTask = false;
   title = '';
@@ -53,7 +55,6 @@ export class TaskManagerComponent implements OnInit {
     this.taskService.addTask(newTask).subscribe(
       response => {
         if (response) {
-          console.log(response);
           this.getUserDetails();
           this.clearTask();
         }
@@ -121,12 +122,30 @@ export class TaskManagerComponent implements OnInit {
     const timeNeeded = remaining / rate; // (days required)
     return DateHandler.addDaysToDate(new Date, timeNeeded).toDateString();
   }
+  public getDelayWarning(task: Task): boolean {
+    if (this.hasDelayedWarning.indexOf(task) >= 0) {
+      return true;
+    }
+    return false;
+  }
+  public updateGoals(event: Goal[]) {
+    if (this.user.goals.length > event.length) {
+      // delete case
+      if (event.length > 0) {
+        this.goal = event[0];
+        this.user.goals = event;
+      }
+    } else {
+      this.getUserDetails();
+    }
+  }
   public getUserDetails() {
     this.loginService.getUserData().subscribe(
       response => {
         this.user = response;
         this.goal = this.loadGoal();
         this.reviewDateString = DateHandler.getDateString(this.goal.reviewDate);
+        this.hasDelayedWarning = this.taskDelayPredictions();
       }
     );
   }
@@ -139,6 +158,12 @@ export class TaskManagerComponent implements OnInit {
   public loadAppointments(event: Appointment[]) {
     this.user.appointments = event;
   }
+  public taskDelayPredictions() {
+    if (this.user == null) {
+      return;
+    }
+    return Analyzer.taskDelayPredictions(this.user.tasks, this.user.appointments);
+  }
   private loadGoal(): Goal {
     const id = +this.route.snapshot.paramMap.get('goalId');
     let g = new Goal();
@@ -149,7 +174,6 @@ export class TaskManagerComponent implements OnInit {
     });
     return g;
   }
-
   private clearTask() {
     this.title = '';
     this.addingTask = false;

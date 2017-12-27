@@ -12,11 +12,7 @@
   </nav>
 </ng-container>
 <ng-container *ngIf="goal != null">
-  <app-goal-editor [goal]="goal" [toDoTasksLength]="toDoTasks().length" [addingGoal]="addingGoal" (updateRequest)="getUserDetails()"></app-goal-editor>
-  <div class="info">
-    あなたの時間のやく{{getTimeBreakDown()}}%がこのゴールを追っています。<br />
-    このペースでタスク全完了見込みは{{getAchievementEstimate()}}
-  </div>
+  <app-goal-editor [goal]="goal" [toDoTasksLength]="toDoTasks().length" [addingGoal]="addingGoal" (updateRequest)="updateGoals($event)"></app-goal-editor>
   <div class="wrapper">
     <div class="flex">
       <p>
@@ -24,7 +20,7 @@
         やるべきタスク
       </p>
       <div class="task-container" *ngFor="let task of toDoTasks()">
-        <app-task-item [task]="task" [appointmentList]="appointmentsOfTask(task.id)"
+        <app-task-item [task]="task" [appointmentList]="appointmentsOfTask(task.id)" [warning]="getDelayWarning(task)"
                        (requireReload)="getUserDetails()" (changedAppointmentList)="loadAppointments($event)"></app-task-item>
       </div>
       <div class="task-container">
@@ -54,5 +50,9 @@
                       (requireReload)="getUserDetails()" (changedAppointmentList)="loadAppointments($event)"></app-task-item>
       </div>
     </div>
+  </div>
+  <div class="info" *ngIf="!addingGoal && toDoTasks().length!=0">
+    あなたの時間のやく{{getTimeBreakDown()}}%がこのゴールを追っています。<br />
+    このペースでタスク全完了見込みは{{getAchievementEstimate()}}
   </div>
 </ng-container>

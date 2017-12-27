@@ -25,6 +25,7 @@ import { GoalEditorComponent } from './goal-editor/goal-editor.component';
 import { AppointmentEditorComponent } from './appointment-editor/appointment-editor.component';
 import { ReviewBoxComponent } from './review-box/review-box.component';
 import { ReviewBoxAppoComponent } from './review-box-appo/review-box-appo.component';
+import { ReportComponent } from './report/report.component';
 
 // import {DemoComponent} from './demo/component';
 
@@ -51,7 +52,8 @@ import { ReviewBoxAppoComponent } from './review-box-appo/review-box-appo.compon
     GoalEditorComponent,
     AppointmentEditorComponent,
     ReviewBoxComponent,
-    ReviewBoxAppoComponent
+    ReviewBoxAppoComponent,
+    ReportComponent
   ],
   providers: [
     LoginService,

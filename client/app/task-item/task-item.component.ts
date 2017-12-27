@@ -15,6 +15,7 @@ export class TaskItemComponent implements OnInit {
 
   @Input() task: Task;
   @Input() appointmentList: Appointment[];
+  @Input() warning: boolean;
   @Output() requireReload: EventEmitter<boolean> = new EventEmitter();
   @Output() changedAppointmentList: EventEmitter<Appointment[]> = new EventEmitter();
   focus = false;
@@ -25,13 +26,18 @@ export class TaskItemComponent implements OnInit {
   ngOnInit() {
     this.dateString = DateHandler.getDateString(this.task.dueDate);
     this.task.completedManHours = Task.getCompletedHours(this.task, this.appointmentList);
+    if (this.warning == null) {
+      this.warning = false;
+    }
   }
 
   public updateTask() {
+    console.log(this.dateString);
     this.task.dueDate = new Date(this.dateString);
     this.taskService.updateTask(this.task).subscribe(
       response => {
-        if (response) {
+        if (response !== []) {
+          this.requireReload.emit(true);
           this.focus = false;
         }
       }

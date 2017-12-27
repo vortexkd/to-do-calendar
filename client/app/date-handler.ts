@@ -44,6 +44,15 @@ export class DateHandler {
     return new Date(temp);
 
   }
+  public static dateComparator(date1: Date, date2: Date) {
+    if (date1 === date2) {
+      return 0;
+    } else if (date1 < date2) {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
   private static doubleDigitFormat(num: number): string {
     return ('00' + num).slice(-2);
   }

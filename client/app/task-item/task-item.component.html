@@ -1,6 +1,7 @@
 <div (click)="focus=true">
   <input class="task-title invisible" type="text" [(ngModel)]="task.title" />
-  <img *ngIf="task.isOverdue()" class="delayed" title="delayed" height="20" width="20" src="../../assets/delayed.png"/>
+  <img *ngIf="task.isOverdue()" class="delayed" title="遅れ" height="20" width="20" src="../../assets/delayed.png"/>
+  <img *ngIf="!task.isOverdue() && warning" class="delayed" title="遅れ忠告" height="20" width="20" src="../../assets/delayWarning.png"/>
   締め切り： <input class="due-date invisible" type="date" [(ngModel)]="dateString" />
   <label for="task_{{task.id}}" >完了チェック
     <input id="task_{{task.id}}" type="checkbox" [(ngModel)]="task.isComplete" (change)="updateTask()" />

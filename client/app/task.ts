@@ -1,4 +1,5 @@
 import {Appointment} from './appointment';
+import {DateHandler} from './date-handler';
 
 export class Task {
   id: number;
@@ -12,6 +13,19 @@ export class Task {
   parentTask: number;
   appointments: Appointment[];
 
+  public static getTasksById(taskIds: number[], tasks: Task[]): Task[] {
+    const result: Task[] = [];
+    let i = 0;
+    while (taskIds[i] != null) {
+      tasks.forEach(function (task) {
+        if (task.id === taskIds[i]) {
+          result.push(task);
+        }
+      });
+      i++;
+    }
+    return result;
+  }
   public static getCompletedHours(task: Task, appointmentList: Appointment[]): number {
     let completedHours = 0;
     if (appointmentList == null) {

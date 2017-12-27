@@ -23,7 +23,7 @@ public class GoalController extends Controller {
 
     public Result createGoal() {
         DatabaseGetter dbGetter = new DatabaseGetter(db);
-        String goals = Exporter.listToJSON(dbGetter.getGoals(1)); // TODO: generalise user
+        String goals = Wrapper.wrapWithJsonKey(Exporter.listToJSON(dbGetter.getGoals(1)), "goals"); // TODO: generalise user
         return ok(Wrapper.wrapResponse(goals));
     }
     //POST request to createGoal with relevant information will create a goal and return list of all goals? or just the new one.

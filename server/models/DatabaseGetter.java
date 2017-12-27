@@ -102,13 +102,17 @@ public class DatabaseGetter {
     public boolean deleteGoal(int personId, int goalId) {
         String delGoal = "UPDATE goal SET " +
                 "deleted=1 WHERE person_id=? AND goal_id=?";
-//        String delTasks = "UPDATE task SET " +
-//                "deleted=1 WHERE person_id=? AND goal_id=?";
+        String delTasks = "UPDATE task SET " +
+                "deleted=1 WHERE person_id=? AND goal_id=?";
         try (Connection conn = db.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(delGoal);
             stmt.setInt(1, personId);
             stmt.setInt(2, goalId);
             if (stmt.executeUpdate() == 1) {
+                PreparedStatement dstmt =  conn.prepareStatement(delTasks);
+                dstmt.setInt(1, personId);
+                dstmt.setInt(2, goalId);
+                dstmt.executeUpdate();
                 conn.close();
                 return true;
             }

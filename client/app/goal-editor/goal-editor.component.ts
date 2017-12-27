@@ -16,7 +16,7 @@ export class GoalEditorComponent implements OnInit {
   @Input() goal: Goal;
   @Input() toDoTasksLength: number;
   @Input() addingGoal: boolean;
-  @Output() updateRequest: EventEmitter<boolean> = new EventEmitter();
+  @Output() updateRequest: EventEmitter<Goal[]> = new EventEmitter();
   reviewDateString: string;
   isChanged = false;
   confirm = false;
@@ -24,7 +24,11 @@ export class GoalEditorComponent implements OnInit {
   constructor(private goalService: GoalService) { }
 
   ngOnInit() {
-    this.reviewDateString = DateHandler.getDateString(this.goal.reviewDate);
+    if (this.goal.reviewDate != null) {
+      this.reviewDateString = DateHandler.getDateString(this.goal.reviewDate);
+    } else {
+      this.reviewDateString = DateHandler.getDateString(DateHandler.addDaysToDate(new Date(), 365));
+    }
   }
   public updateGoal() {
     if (!this.isChanged) {
@@ -53,7 +57,7 @@ export class GoalEditorComponent implements OnInit {
     this.goal.reviewDate = new Date(this.reviewDateString);
     this.goalService.createGoal(this.goal).subscribe(response => {
       if (response) {
-        this.updateRequest.emit(true);
+        this.updateRequest.emit(response);
       }
     });
   }
@@ -61,7 +65,7 @@ export class GoalEditorComponent implements OnInit {
     this.goalService.deleteGoal(this.goal).subscribe(
       response => {
         if (response) {
-          this.updateRequest.emit(true);
+          this.updateRequest.emit(response);
         }
       }
     );

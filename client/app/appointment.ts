@@ -22,6 +22,17 @@ export class Appointment {
     });
     return result;
   }
+  public static getWeekAppointments(all: Appointment[]): Appointment[] {
+    const weekAppos: Appointment[] = [];
+    const today = new Date();
+    const weekAgo = DateHandler.addDaysToDate(new Date(), -7);
+    all.forEach(function(appo) {
+      if (appo.startTime > weekAgo && appo.startTime < today) {
+        weekAppos.push(appo);
+      }
+    });
+    return weekAppos;
+  }
   public needsReview() {
     const today = new Date(DateHandler.getDateString(new Date()) + ' ' + Appointment.reviewTime);
     const yesterday = new Date();
