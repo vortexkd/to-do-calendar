@@ -47,7 +47,7 @@ public class Goal implements IExportable {
     public Goal(String id, String title, String reviewDate, String description, String achieved, String satisfaction) {
         this.id = (isInt(id) ? Integer.parseInt(id) : 0);
         this.title = title;
-        this.description = Validator.clean(description, true);
+        this.description = Validator.clean(description);
         this.isAchieved = !"0".equals(achieved);
         this.reviewDate = LocalDate.parse(reviewDate, DATE_FORMAT);
     }
@@ -106,7 +106,7 @@ public class Goal implements IExportable {
                 "\"achieved\":\"" + this.isAchieved + "\"," +
                 "\"review_date\":\"" + this.getReviewDateString() + "\"," +
                 "\"created_date\":\"" + this.getCreatedDate() + "\"," +
-                "\"desc\":\"" + this.getDescription() + "\"" +
+                "\"desc\":\"" + Validator.clean(this.getDescription()) + "\"" +
                 "}";
     }
 }

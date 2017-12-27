@@ -140,6 +140,7 @@ export class TaskManagerComponent implements OnInit {
     }
   }
   public getUserDetails() {
+    console.log('loading');
     this.loginService.getUserData().subscribe(
       response => {
         this.user = response;

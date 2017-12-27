@@ -16,8 +16,8 @@ export class GoalEditorComponent implements OnInit {
   @Input() goal: Goal;
   @Input() toDoTasksLength: number;
   @Input() addingGoal: boolean;
+  @Input() reviewDateString: string;
   @Output() updateRequest: EventEmitter<Goal[]> = new EventEmitter();
-  reviewDateString: string;
   isChanged = false;
   confirm = false;
 

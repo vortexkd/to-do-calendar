@@ -12,7 +12,8 @@
   </nav>
 </ng-container>
 <ng-container *ngIf="goal != null">
-  <app-goal-editor [goal]="goal" [toDoTasksLength]="toDoTasks().length" [addingGoal]="addingGoal" (updateRequest)="updateGoals($event)"></app-goal-editor>
+  <app-goal-editor [goal]="goal" [toDoTasksLength]="toDoTasks().length" [addingGoal]="addingGoal"
+                   [reviewDateString]="reviewDateString" (updateRequest)="updateGoals($event)"></app-goal-editor>
   <div class="wrapper">
     <div class="flex">
       <p>
